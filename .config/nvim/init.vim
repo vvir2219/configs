@@ -120,6 +120,8 @@ call plug#end()
 
 lua << EOF
 
+require("mason").setup()
+
 local lsp = require('lsp-zero')
 
 lsp.set_preferences({

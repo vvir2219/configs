@@ -6,14 +6,36 @@ alias vim=nvim
 
 bindkey -e
 
-eval "$(direnv hook zsh)"
-source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
-source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
-
 for f in $HOME/.config/personal/*; do
     source "$f"
 done
 
+# fg-bg toggle via c-z
+function fg-bg {
+    if [[ $#BUFFER -eq 0 ]]; then
+        BUFFER=fg
+        zle accept-line
+    else
+        zle push-input
+    fi
+}
+zle -N fg-bg
+bindkey '^z' fg-bg
+
+# chruby
+eval "$(direnv hook zsh)"
+source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
+source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
+
+# go
+eval "$(goenv init -)"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# prompt
 autoload -U colors && colors
 setopt PROMPT_SUBST
 
@@ -34,5 +56,5 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 
-PROMPT='[%{$fg[red]%}%n%{$reset_color%} %{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info)]
+PROMPT='[ %{$fg[red]%}%n%{$reset_color%} %{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info) ]
 %# '
