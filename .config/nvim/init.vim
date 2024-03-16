@@ -26,6 +26,8 @@ set completeopt=menu,menuone,noselect
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+au BufRead,BufNewFile *.templ set filetype=templ
 
 " tpope
 
@@ -34,7 +36,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
-" Plug 'tpope/vim-dispatch' " not needed for now, conflict with my m normal mapping(next match)
+Plug 'tpope/vim-sleuth'
 
 " other
 
@@ -119,6 +121,19 @@ let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 call plug#end()
 
 lua << EOF
+
+-- treesitter
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+  auto_install = true,
+
+  highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+  },
+}
+
+-- mason
 
 require("mason").setup()
 
@@ -256,19 +271,17 @@ com! DiffSaved call s:DiffWithSaved()
 
 noremap <leader>cf :call CreateFile(expand("<cfile>"))<CR>
 function! CreateFile(tfilename)
+  " complete filepath from the file where this is called
+  let newfilepath=expand('%:p:h') .'/'. expand(a:tfilename)
 
-    " complete filepath from the file where this is called
-    let newfilepath=expand('%:p:h') .'/'. expand(a:tfilename)
-
-    if filereadable(newfilepath)
-       echo "File already exists"
-       :norm gf
-    else
-        :execute "!touch ". expand(newfilepath)
-        echom "File created: ". expand(newfilepath)
-        :norm gf
-    endif
-
+  if filereadable(newfilepath)
+     echo "File already exists"
+     :norm gf
+  else
+      :execute "!touch ". expand(newfilepath)
+      echom "File created: ". expand(newfilepath)
+      :norm gf
+  endif
 endfunction
 
 nnoremap <leader>d :w !diff % -<cr>
