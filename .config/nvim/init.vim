@@ -285,3 +285,12 @@ function! CreateFile(tfilename)
 endfunction
 
 nnoremap <leader>d :w !diff % -<cr>
+
+" diacritice
+" inoremap a( ă
+" inoremap a> â
+" inoremap i> î
+" inoremap t, ţ
+" inoremap s, ş
+" inoremap t,<space> t,<space>
+" inoremap s,<space> s,<space>
