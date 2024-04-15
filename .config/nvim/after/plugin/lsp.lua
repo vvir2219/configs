@@ -7,6 +7,7 @@ lsp_zero.on_attach(function(client, bufnr)
 
   local opts = { buffer = bufnr, remap = false }
   vim.keymap.set('i', "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set('v', '<Leader>f', vim.lsp.buf.format, opts)
 end)
 
 -- here you can setup the language servers
@@ -26,8 +27,8 @@ require('luasnip.loaders.from_snipmate').lazy_load()
 
 cmp.setup({
   sources = {
-    {name = 'nvim_lsp'},
-    {name = 'luasnip'},
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
   },
   mapping = {
     ['<C-f>'] = cmp_action.luasnip_jump_forward(),
