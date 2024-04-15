@@ -16,3 +16,4 @@ end
 
 vim.keymap.set("n", 'zi', ZoomIn, { silent = true })
 vim.keymap.set("n", 'zo', ZoomOut, { silent = true })
+vim.keymap.set("n", 'Zi', vim.cmd.only, { silent = true })

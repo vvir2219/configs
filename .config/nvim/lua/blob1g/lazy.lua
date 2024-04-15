@@ -73,5 +73,26 @@ require('lazy').setup({
   },
   { 'saadparwaiz1/cmp_luasnip' },
 
-  { 'terryma/vim-expand-region' },
+  {
+    'terryma/vim-expand-region',
+    init = function ()
+      vim.keymap.set('x', '_', '<Plug>(expand_region_shrink)')
+    end
+  },
+
+  { 'echasnovski/mini.nvim', version = false },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    -- @type Flash.Config
+    opts = {
+      modes = {
+        char = { enabled = false },
+      }
+    },
+    -- stylua: ignore
+    keys = {
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+    },
+  }
 })

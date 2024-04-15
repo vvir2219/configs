@@ -21,20 +21,19 @@ vim.keymap.set({ 'n', 'x' }, 'M', 'N')
 
 vim.keymap.set({ 'n', 'x' }, '-', '$')
 vim.keymap.set({ 'n', 'x' }, '_', '^')
-vim.keymap.set({ 'n', 'x' }, 'N', '<C-w><C-w>')
 vim.keymap.set({ 'n', 'x' }, 'H', '8<Down>')
 vim.keymap.set({ 'n', 'x' }, 'T', '8<Up>')
+
+vim.keymap.set('n', 'N', '<C-w><C-w>')
+vim.keymap.set('n', '<C-h>', '<C-w>j')
+vim.keymap.set('n', '<C-t>', '<C-w>k')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
+vim.keymap.set('n', '<C-\'>', '<C-w>h')
 
 -- from the primagen
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
--- vim.keymap.set("n", "J", "mzJ`z")
--- vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- vim.keymap.set("n", "<C-u>", "<C-u>zz")
--- vim.keymap.set("n", "n", "nzzzv")
--- vim.keymap.set("n", "N", "Nzzzv")
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -51,6 +50,7 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-q>", vim.cmd.copen)
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
