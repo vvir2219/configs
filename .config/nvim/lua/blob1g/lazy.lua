@@ -34,7 +34,13 @@ require('lazy').setup({
     end
   },
 
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = function ()
+      vim.cmd'au BufRead,BufNewFile *.templ set filetype=templ'
+    end
+  },
   { "nvim-treesitter/playground" },
 
   {
