@@ -4,14 +4,26 @@
 
 function ZoomIn()
   if vim.fn.winnr("$") > 1 then
-    vim.cmd("tabedit +" .. vim.fn.line(".") .. " %")
+    local is_quickfix = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]['quickfix'] == 1
+
+    if is_quickfix then
+      vim.api.nvim_win_set_height(0, 500)
+    else
+      vim.cmd("tabedit +" .. vim.fn.line(".") .. " %")
+    end
   end
 end
 
 function ZoomOut()
-  local linenr = vim.fn.line(".")
-  if pcall(vim.cmd.tabclose) then
-    vim.cmd("normal" .. linenr .. "G")
+  local is_quickfix = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]['quickfix'] == 1
+
+  if is_quickfix then
+    vim.api.nvim_win_set_height(0, 10)
+  else
+    local linenr = vim.fn.line(".")
+    if pcall(vim.cmd.tabclose) then
+      vim.cmd("normal" .. linenr .. "G")
+    end
   end
 end
 
