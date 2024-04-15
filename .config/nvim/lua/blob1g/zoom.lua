@@ -10,8 +10,9 @@ end
 
 function ZoomOut()
   local linenr = vim.fn.line(".")
-  vim.cmd("tabclose")
-  vim.cmd("normal" .. linenr .. "G")
+  if pcall(vim.cmd.tabclose) then
+    vim.cmd("normal" .. linenr .. "G")
+  end
 end
 
 vim.keymap.set("n", 'zi', ZoomIn, { silent = true })
