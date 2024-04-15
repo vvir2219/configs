@@ -22,7 +22,7 @@ require('lazy').setup({
     "nvim-telescope/telescope.nvim",
     version = "0.1.6",
     dependencies = {
-      {"nvim-lua/plenary.nvim"}
+      { "nvim-lua/plenary.nvim" }
     }
   },
 
@@ -40,7 +40,7 @@ require('lazy').setup({
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    dependencies = { {"nvim-lua/plenary.nvim"} }
+    dependencies = { { "nvim-lua/plenary.nvim" } }
   },
 
   { "mbbill/undotree" },
@@ -52,16 +52,16 @@ require('lazy').setup({
   { "tpope/vim-rails" },
   { "tpope/vim-sleuth" },
 
-  {'folke/tokyonight.nvim'},
-  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-  {'williamboman/mason.nvim'},
-  {'williamboman/mason-lspconfig.nvim'},
-  {'neovim/nvim-lspconfig'},
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/nvim-cmp'},
-  {'L3MON4D3/LuaSnip'},
+  { 'folke/tokyonight.nvim' },
+  { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+  { 'williamboman/mason.nvim' },
+  { 'williamboman/mason-lspconfig.nvim' },
+  { 'neovim/nvim-lspconfig' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { 'hrsh7th/nvim-cmp' },
+  { 'L3MON4D3/LuaSnip' },
 
-  { "folke/neodev.nvim", opts = {} },
+  { "folke/neodev.nvim",                opts = {} },
 
   { "honza/vim-snippets" },
   {
@@ -75,12 +75,12 @@ require('lazy').setup({
 
   {
     'terryma/vim-expand-region',
-    init = function ()
+    init = function()
       vim.keymap.set('x', '_', '<Plug>(expand_region_shrink)')
     end
   },
 
-  { 'echasnovski/mini.nvim', version = false },
+  { 'echasnovski/mini.nvim',   version = false },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
