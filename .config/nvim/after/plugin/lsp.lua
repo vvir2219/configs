@@ -4,6 +4,11 @@ lsp_zero.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
   lsp_zero.default_keymaps({ buffer = bufnr })
+
+  local opts = { buffer = bufnr, remap = false }
+  vim.keymap.set('i', "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set("n", "]g", vim.diagnostic.goto_next, opts)
+  vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, opts)
 end)
 
 -- here you can setup the language servers

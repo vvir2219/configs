@@ -72,4 +72,6 @@ require('lazy').setup({
     build = "make install_jsregexp"
   },
   { 'saadparwaiz1/cmp_luasnip' },
+
+  { 'terryma/vim-expand-region' },
 })
