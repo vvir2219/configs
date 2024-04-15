@@ -1,25 +1,12 @@
 call plug#begin()
 
-" LSP Support
-Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-
-" Autocompletion
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-nvim-lua'
-
-"  Snippets
-Plug 'L3MON4D3/LuaSnip'
-Plug 'rafamadriz/friendly-snippets'
-
-Plug 'VonHeikemen/lsp-zero.nvim'
- 
 set completeopt=menu,menuone,noselect
+
+" autocompletion & lsp
+
+" toggle terminal 
+
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 
 " looks
 
@@ -81,7 +68,6 @@ omap <leader><tab> <plug>(fzf-maps-o)
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-"app/uploaders/handicapfile_uploader.rb"
 
 nnoremap <silent> <C-p> :GFiles<CR>
 nnoremap <silent> <C-b> :Buffers<CR>
@@ -97,14 +83,14 @@ map g* <Plug>(asterisk-gz*)
 map #  <Plug>(asterisk-z#)
 map g# <Plug>(asterisk-gz#)
 
-Plug 'rhysd/devdocs.vim'
-
-nmap K <Plug>(devdocs-under-cursor)
-let g:devdocs_filetype_map = {
-    \   'ruby': 'rails',
-    \   'javascript.jsx': 'react',
-    \   'javascript.test': 'chai',
-    \ }
+" Plug 'rhysd/devdocs.vim'
+" 
+" nmap K <Plug>(devdocs-under-cursor)
+" let g:devdocs_filetype_map = {
+"     \   'ruby': 'rails',
+"     \   'javascript.jsx': 'react',
+"     \   'javascript.test': 'chai',
+"     \ }
 
 Plug 'andymass/vim-matchup'
 
@@ -116,11 +102,15 @@ Plug 'camspiers/lens.vim'
 
 let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 " let g:lens#height_resize_max = 120
-" let g:lens#width_resize_max = 150
 
 call plug#end()
 
 lua << EOF
+
+-- toggle terminal
+require('toggleterm').setup {
+  open_mapping = [[<c-/>]],
+}
 
 -- treesitter
 require'nvim-treesitter.configs'.setup {
@@ -133,30 +123,7 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
--- mason
-
-require("mason").setup()
-
-local lsp = require('lsp-zero')
-
-lsp.set_preferences({
-  suggest_lsp_servers = true,
-  setup_servers_on_start = true,
-  set_lsp_keymaps = true,
-  configure_diagnostics = true,
-  cmp_capabilities = true,
-  manage_nvim_cmp = true,
-  call_servers = 'local',
-  sign_icons = {
-    error = '✘',
-    warn = '▲',
-    hint = '⚑',
-    info = ''
-  }
-})
-lsp.setup()
-
-vim.diagnostic.disable()
+-- vim.diagnostic.disable()
 
 EOF
 
@@ -236,6 +203,9 @@ colorscheme gruvbox
 
 set cole=2
 hi clear Conceal
+
+" delete / yank / paste improvement
+nnoremap <leader>p "0p
 
 " misc
 
