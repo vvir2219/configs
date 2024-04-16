@@ -74,3 +74,24 @@ vim.keymap.set(
   "<leader>ee",
   "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
 )
+
+-- diff with unsaved version
+vim.keymap.set('n', '<leader>df', function()
+  local filetype = vim.bo.filetype
+  local linenr = vim.fn.line(".")
+
+  vim.cmd.diffthis()
+  vim.cmd.new()
+  vim.cmd('r #')
+  vim.cmd('normal! 1Gdd')
+  vim.cmd.diffthis()
+  vim.cmd("setlocal bt=nofile bh=wipe nobl noswf ro ft=" .. filetype)
+  vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
+
+  vim.api.nvim_create_autocmd('WinClosed', {
+    callback = function()
+      vim.cmd("normal" .. linenr .. "G")
+    end,
+    buffer = vim.api.nvim_get_current_buf(),
+  })
+end)
