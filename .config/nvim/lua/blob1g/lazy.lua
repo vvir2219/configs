@@ -37,8 +37,8 @@ require('lazy').setup({
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function ()
-      vim.cmd'au BufRead,BufNewFile *.templ set filetype=templ'
+    config = function()
+      vim.cmd 'au BufRead,BufNewFile *.templ set filetype=templ'
     end
   },
   { "nvim-treesitter/playground" },
@@ -100,5 +100,6 @@ require('lazy').setup({
     keys = {
       { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
     },
-  }
+  },
+  { 'stevearc/oil.nvim' }
 })
