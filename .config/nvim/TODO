@@ -1,5 +1,8 @@
 - fix flash search
-- file explorer and/or better netrw config (base directory & exit)
 - git changed files telescope ( easypick? )
 - modified buffers telescope
 - fuzzy search?
+- leader w/b/e...
+- BD
+- autosave? or or easier command for save
+- work on Oil for tree thingy (open in last buffer, toggle with ctr-e if opened)

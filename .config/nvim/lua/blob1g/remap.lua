@@ -1,5 +1,11 @@
 vim.g.mapleader = ' '
 vim.keymap.set('n', '<leader>rw', vim.cmd.Oil)
+vim.keymap.set('n', '<c-e>', function()
+  vim.cmd.vs()
+  vim.cmd.Oil()
+  vim.api.nvim_win_set_width(0, 35)
+  vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
+end)
 
 -- useful thingies
 
@@ -25,8 +31,8 @@ vim.keymap.set({ 'n', 'x' }, 'H', '8<Down>')
 vim.keymap.set({ 'n', 'x' }, 'T', '8<Up>')
 
 vim.keymap.set('n', 'N', '<C-w><C-w>')
-vim.keymap.set('n', '<C-h>', '<C-w>j')
-vim.keymap.set('n', '<C-t>', '<C-w>k')
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-\'>', '<C-w>h')
 
@@ -68,12 +74,6 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
-vim.keymap.set(
-  "n",
-  "<leader>ee",
-  "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
-)
 
 -- diff with unsaved version
 vim.keymap.set('n', '<leader>df', function()
