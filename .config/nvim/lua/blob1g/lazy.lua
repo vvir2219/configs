@@ -59,7 +59,7 @@ require('lazy').setup({
   { "tpope/vim-sleuth" },
 
   { 'folke/tokyonight.nvim' },
-  { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+  { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
   { 'williamboman/mason.nvim' },
   { 'williamboman/mason-lspconfig.nvim' },
   { 'neovim/nvim-lspconfig' },
@@ -67,7 +67,7 @@ require('lazy').setup({
   { 'hrsh7th/nvim-cmp' },
   { 'L3MON4D3/LuaSnip' },
 
-  { "folke/neodev.nvim",                opts = {} },
+  { "folke/neodev.nvim", opts = {} },
 
   { "honza/vim-snippets" },
   {
@@ -101,5 +101,6 @@ require('lazy').setup({
       { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
     },
   },
-  { 'stevearc/oil.nvim' }
+
+  { 'stevearc/oil.nvim', opts = {} },
 })
