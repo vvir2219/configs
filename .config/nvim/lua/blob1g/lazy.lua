@@ -82,7 +82,7 @@ require('lazy').setup({
   {
     'terryma/vim-expand-region',
     init = function()
-      vim.keymap.set('x', '_', '<Plug>(expand_region_shrink)')
+      vim.keymap.set('x', '4', '<Plug>(expand_region_shrink)')
     end
   },
 
@@ -103,4 +103,6 @@ require('lazy').setup({
   },
 
   { 'stevearc/oil.nvim', opts = {} },
+
+  { 'jremmen/vim-ripgrep' },
 })
