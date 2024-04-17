@@ -106,12 +106,16 @@ require('lazy').setup({
 
   { 'jremmen/vim-ripgrep' },
 
-
   {
     'ggandor/leap.nvim',
     config = function()
-      vim.keymap.set('n', 's', '<Plug>(leap)')
-      vim.keymap.set('n', '<C-s>', '<Plug>(leap-from-window)')
+      -- vim.keymap.set('n', 's', '<Plug>(leap)')
+      -- vim.keymap.set('n', '<C-s>', '<Plug>(leap-from-window)')
+      vim.keymap.set('n', 's', function()
+        require('leap').leap {
+          target_windows = require('leap.user').get_focusable_windows()
+        }
+      end)
       vim.keymap.set({ 'x', 'o' }, 's', '<Plug>(leap-forward)')
       vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
     end
