@@ -13,22 +13,22 @@ vim.keymap.set('n', '<C-c>', '<C-^>')
 
 -- dvorak remappings
 
-vim.keymap.set({ 'n', 'x' }, 'h', 'j')
-vim.keymap.set({ 'n', 'x' }, 't', 'k')
-vim.keymap.set({ 'n', 'x' }, 'n', 'l')
+vim.keymap.set({ 'n', 'x', 'o' }, 'h', 'j')
+vim.keymap.set({ 'n', 'x', 'o' }, 't', 'k')
+vim.keymap.set({ 'n', 'x', 'o' }, 'n', 'l')
 
-vim.keymap.set({ 'n', 'x' }, ';', ':')
-vim.keymap.set({ 'n', 'x' }, ':', ';')
+vim.keymap.set({ 'n', 'x', 'o' }, ';', ':')
+vim.keymap.set({ 'n', 'x', 'o' }, ':', ';')
 
-vim.keymap.set({ 'n', 'x' }, 'm', 'n')
-vim.keymap.set({ 'n', 'x' }, 'M', 'N')
+vim.keymap.set({ 'n', 'x', 'o' }, 'm', 'n')
+vim.keymap.set({ 'n', 'x', 'o' }, 'M', 'N')
 
 -- some benefits
 
-vim.keymap.set({ 'n', 'x' }, '-', '$')
-vim.keymap.set({ 'n', 'x' }, '_', '^')
-vim.keymap.set({ 'n', 'x' }, 'H', '8<Down>')
-vim.keymap.set({ 'n', 'x' }, 'T', '8<Up>')
+vim.keymap.set({ 'n', 'x', 'o' }, '-', '$')
+vim.keymap.set({ 'n', 'x', 'o' }, '_', '^')
+vim.keymap.set({ 'n', 'x', 'o' }, 'H', '8<Down>')
+vim.keymap.set({ 'n', 'x', 'o' }, 'T', '8<Up>')
 
 vim.keymap.set('n', 'N', '<C-w><C-w>')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
