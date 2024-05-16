@@ -39,9 +39,11 @@ require('lazy').setup({
     build = ":TSUpdate",
     config = function()
       vim.cmd 'au BufRead,BufNewFile *.templ set filetype=templ'
+      vim.cmd 'au BufRead,BufNewFile go.mod set filetype=gomod'
     end
   },
   { "nvim-treesitter/playground" },
+  { "nvim-treesitter/nvim-treesitter-textobjects" },
 
   {
     "ThePrimeagen/harpoon",
@@ -79,13 +81,6 @@ require('lazy').setup({
   },
   { 'saadparwaiz1/cmp_luasnip' },
 
-  {
-    'terryma/vim-expand-region',
-    init = function()
-      vim.keymap.set('x', '4', '<Plug>(expand_region_shrink)')
-    end
-  },
-
   { 'echasnovski/mini.nvim',   version = false },
   {
     "folke/flash.nvim",
@@ -119,5 +114,23 @@ require('lazy').setup({
       vim.keymap.set({ 'x', 'o' }, 's', '<Plug>(leap-forward)')
       vim.keymap.set({ 'x', 'o' }, 'S', '<Plug>(leap-backward)')
     end
-  }
+  },
+
+  { 'joerdav/templ.vim' },
+
+  {
+    'romgrk/replace.vim',
+    config = function()
+      vim.keymap.set({ 'n', 'x' }, 'R', '<Plug>ReplaceOperator')
+    end
+  },
+
+  {
+    'terrortylor/nvim-comment',
+    config = function()
+      require('nvim_comment').setup()
+    end
+  },
+
+  { 'jeetsukumaran/vim-indentwise' }
 })

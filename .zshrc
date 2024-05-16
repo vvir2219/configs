@@ -3,6 +3,7 @@ autoload -U compinit; compinit
 alias config='/usr/bin/git --git-dir=/Users/vladilie/.cfg/ --work-tree=/Users/vladilie'
 # alias ls='[ $(pwd) = $HOME ] && gls -IDocuments -IPictures -IMovies -ILibrary -IApplications -ILibrary -IMusic -IPublic || \ls'
 alias vim=nvim
+alias comp=docker-compose
 
 bindkey -e
 
@@ -58,3 +59,8 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 
 PROMPT='[ %{$fg[red]%}%n%{$reset_color%} %{$fg[blue]%}%~%{$reset_color%}$(git_prompt_info) ]
 %# '
+
+export CLICOLOR=1
+
+# libpq
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

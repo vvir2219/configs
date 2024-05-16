@@ -1,11 +1,11 @@
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>rw', vim.cmd.Oil)
-vim.keymap.set('n', '<c-e>', function()
-  vim.cmd.vs()
-  vim.cmd.Oil()
-  vim.api.nvim_win_set_width(0, 35)
-  vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
-end)
+vim.keymap.set('n', '<C-e>', vim.cmd.Oil)
+-- vim.keymap.set('n', '<c-e>', function()
+--   vim.cmd.vs()
+--   vim.cmd.Oil()
+--   vim.api.nvim_win_set_width(0, 35)
+--   vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = vim.api.nvim_get_current_buf(), silent = true })
+-- end)
 
 -- useful thingies
 
@@ -22,6 +22,8 @@ vim.keymap.set({ 'n', 'x', 'o' }, ':', ';')
 
 vim.keymap.set({ 'n', 'x', 'o' }, 'm', 'n')
 vim.keymap.set({ 'n', 'x', 'o' }, 'M', 'N')
+
+vim.keymap.set('n', '<leader>m', 'm')
 
 -- some benefits
 
@@ -54,19 +56,27 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "]c", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "[c", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<C-q>", function()
-  local qf_exists = false
+  local qf_winid = -1
+
   for _, win in pairs(vim.fn.getwininfo()) do
     if win["quickfix"] == 1 then
-      qf_exists = true
+      qf_winid = win["winid"]
     end
   end
-  if qf_exists then
+
+  if qf_winid ~= -1 then
+    -- if qf_winid == vim.api.nvim_get_current_win() then
+    --   vim.cmd.cclose()
+    -- else
+    --   vim.cmd.wincmd('j')
+    -- end
     vim.cmd.cclose()
   else
     vim.cmd.copen()
+    vim.cmd.wincmd('J')
   end
 end)
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")

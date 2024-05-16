@@ -35,3 +35,29 @@ cmp.setup({
     ['<C-b>'] = cmp_action.luasnip_jump_backward(),
   }
 })
+
+-- diagnostics
+
+vim.diagnostic.config({
+  virtual_text = false, -- Turn off inline diagnostics
+})
+
+-- sql db connection
+
+require'lspconfig'.sqls.setup{
+  on_attach = function(client, bufnr)
+    require('sqls').on_attach(client, bufnr) -- require sqls.nvim
+  end,
+
+  settings = {
+    sqls = {
+      connections = {
+        {
+          driver = 'postgresql',
+          dataSourceName = 'host=localhost port=5432 user=postgres password=password dbname=postgres sslmode=disable',
+        },
+      },
+    },
+  },
+}
+

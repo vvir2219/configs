@@ -13,6 +13,7 @@ require("telescope").setup({
 
 vim.keymap.set('n', '<C-f>', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>rg', builtin.grep_string, {})
+vim.keymap.set('n', '<leader>tf', builtin.find_files, {})
 vim.keymap.set('n', '<C-p>', function()
     if not pcall(builtin.git_files) then
         builtin.find_files()
@@ -20,7 +21,8 @@ vim.keymap.set('n', '<C-p>', function()
 end)
 vim.keymap.set('n', '<C-b>', builtin.buffers, {})
 vim.keymap.set('n', '<leader>tk', builtin.keymaps, {})
+
+-- telescope lsp
+
 vim.keymap.set('n', '<leader>tr', builtin.lsp_references, {})
-vim.keymap.set('n', '<leader>tf', function()
-    builtin.lsp_document_symbols({ symbols = 'function' })
-end)
+vim.keymap.set('n', '<leader>tF', function() builtin.lsp_document_symbols({ symbols = 'function' }) end)

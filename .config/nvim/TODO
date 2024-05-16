@@ -7,3 +7,10 @@
 - work on Oil for tree thingy (open in last buffer, toggle with ctr-e if opened)
 - oil from base directory?
 - search lua functions / builtins
+- replace
+- comment
+- fix expand region
+- lazy shit, like highligh on yank / delete
+- buffer and filesystem completion
+- endwise
+- [x] fix quicklist
