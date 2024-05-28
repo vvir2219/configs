@@ -44,7 +44,7 @@ vim.diagnostic.config({
 
 -- sql db connection
 
-require'lspconfig'.sqls.setup{
+require 'lspconfig'.sqls.setup {
   on_attach = function(client, bufnr)
     require('sqls').on_attach(client, bufnr) -- require sqls.nvim
   end,
@@ -60,4 +60,3 @@ require'lspconfig'.sqls.setup{
     },
   },
 }
-
