@@ -67,6 +67,7 @@ require('lazy').setup({
   { 'neovim/nvim-lspconfig' },
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'hrsh7th/nvim-cmp' },
+  { 'hrsh7th/cmp-buffer' },
   { 'L3MON4D3/LuaSnip' },
 
   { "folke/neodev.nvim",                opts = {} },
@@ -132,5 +133,23 @@ require('lazy').setup({
     end
   },
 
-  { 'jeetsukumaran/vim-indentwise' }
+  { 'jeetsukumaran/vim-indentwise' },
+
+  {
+    'chaoren/vim-wordmotion',
+    init = function()
+      vim.g.wordmotion_prefix = ','
+    end
+  },
+
+  { 'haya14busa/is.vim' },
+  {
+    'haya14busa/vim-asterisk',
+    init = function()
+      vim.g['asterisk#keeppos'] = 1
+      vim.api.nvim_set_keymap('n', '*', '<Plug>(asterisk-z*)', {})
+    end
+  },
+
+  { 'subnut/visualstar.vim' },
 })

@@ -10,16 +10,38 @@ local t = ls.text_node
 local i = ls.insert_node
 
 local errwr_snippet = s("error_handler", {
-  t("if "), i(1, "err"), t({" != nil {", "\treturn fmt.Errorf(\""}), i(2, ""), t({" %w\", err)", "}"})
+  -- t("if "), i(1, "err"), t({" != nil {", "\treturn fmt.Errorf(\""}), i(2, ""), t({" %w\", err)", "}"})
+  t({ "if err != nil {", "\tlogger.Error.Println(err)", "\treturn " }),
+  i(1, ""),
+  t({ "", "}" })
 })
 
 -- go
 create_autocmd("filetype", {
-  group=go_group,
-  pattern="go",
-  callback = function ()
-    vim.keymap.set("i", "e$", function ()
+  group = go_group,
+  pattern = "go",
+  callback = function()
+    vim.keymap.set("i", "e$", function()
       ls.snip_expand(errwr_snippet)
     end, { buffer = true })
+
+    -- Custom fold text
+    -- function CustomFoldText()
+    --   local line = vim.fn.getline(vim.v.foldstart)
+    --   if line:match("if err != nil") then
+    --     return "error handling"
+    --   else
+    --     return vim.fn.getline(vim.v.foldstart)
+    --   end
+    -- end
+
+    -- vim.opt.foldtext = "v:lua.CustomFoldText()"
+
+    -- Highlight fold text
+    vim.cmd [[highlight FoldedErrorHandling guifg=red ctermfg=red]]
+    vim.cmd [[ syntax match FoldedErrorHandling /.*if err != nil/ ]]
+
+    -- use this to fold errors
+    -- :g/\s*if err /normal jva{zf
   end
 })

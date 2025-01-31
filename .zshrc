@@ -1,5 +1,3 @@
-autoload -U compinit; compinit
-
 alias config='/usr/bin/git --git-dir=/Users/vladilie/.cfg/ --work-tree=/Users/vladilie'
 # alias ls='[ $(pwd) = $HOME ] && gls -IDocuments -IPictures -IMovies -ILibrary -IApplications -ILibrary -IMusic -IPublic || \ls'
 alias vim=nvim
@@ -30,6 +28,7 @@ source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
 source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
 
 # go
+export PATH="/Users/vladilie/.goenv/shims:${PATH}"
 eval "$(goenv init -)"
 
 # nvm
@@ -65,3 +64,29 @@ export CLICOLOR=1
 
 # libpq
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+# autocomplete
+export fpath=("$HOME/.config/completions/" $fpath)
+autoload -U compinit; compinit
+
+# open last directory
+scd() {
+    if [[ -d "$PWD/$1" ]]; then
+        echo "$PWD/$1" > "$HOME/.config/.last_folder_visited"
+    fi
+    \cd "$1"
+}
+alias cd=scd
+
+if [[ -e "$HOME/.config/.last_folder_visited" ]]; then
+    cd "$(cat "$HOME/.config/.last_folder_visited")"
+fi
+
+# Created by `pipx` on 2024-12-17 09:11:02
+export PATH="$PATH:/Users/vladilie/.local/bin"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/vladilie/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vladilie/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/vladilie/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vladilie/google-cloud-sdk/completion.zsh.inc'; fi
