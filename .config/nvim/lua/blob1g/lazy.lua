@@ -40,6 +40,8 @@ require('lazy').setup({
     config = function()
       vim.cmd 'au BufRead,BufNewFile *.templ set filetype=templ'
       vim.cmd 'au BufRead,BufNewFile go.mod set filetype=gomod'
+      vim.cmd 'au BufRead,BufNewFile .envrc set filetype=bash'
+      vim.cmd 'au BufRead,BufNewFile .env.* set filetype=bash'
     end
   },
   { "nvim-treesitter/playground" },
@@ -98,7 +100,14 @@ require('lazy').setup({
     },
   },
 
-  { 'stevearc/oil.nvim',  opts = {} },
+  {
+    'stevearc/oil.nvim',
+    opts = {
+      view_options = {
+        show_hidden = true
+      }
+    }
+  },
 
   { 'jremmen/vim-ripgrep' },
 

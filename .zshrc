@@ -67,20 +67,7 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # autocomplete
 export fpath=("$HOME/.config/completions/" $fpath)
-autoload -U compinit; compinit
-
-# open last directory
-scd() {
-    if [[ -d "$PWD/$1" ]]; then
-        echo "$PWD/$1" > "$HOME/.config/.last_folder_visited"
-    fi
-    \cd "$1"
-}
-alias cd=scd
-
-if [[ -e "$HOME/.config/.last_folder_visited" ]]; then
-    cd "$(cat "$HOME/.config/.last_folder_visited")"
-fi
+# autoload -U compinit; compinit # it's done automatically 
 
 # Created by `pipx` on 2024-12-17 09:11:02
 export PATH="$PATH:/Users/vladilie/.local/bin"
@@ -90,3 +77,13 @@ if [ -f '/Users/vladilie/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vladil
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/vladilie/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/vladilie/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/vladilie/.lmstudio/bin"
+
+# CURL
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+
+# For compilers to find curl you may need to set:
+#   export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
+#   export CPPFLAGS="-I/opt/homebrew/opt/curl/include"

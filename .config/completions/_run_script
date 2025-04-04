@@ -1,0 +1,10 @@
+#compdef run_script
+
+_arguments \
+  '*:script:->scripts'
+
+case $state in
+  scripts)
+    _wanted scripts expl 'available scripts' compadd -- $(run_script)
+    ;;
+esac
