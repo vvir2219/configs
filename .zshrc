@@ -87,3 +87,7 @@ export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 # For compilers to find curl you may need to set:
 #   export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
 #   export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
+
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+# export KITTY_LISTEN_ON=unix:/tmp/kitty
