@@ -170,5 +170,7 @@ require('lazy').setup({
       vim.g.vimtex_mappings_enabled = 0
       vim.g.vimtex_view_automatic = 0
     end,
-  }
+  },
+
+  { 'OmniSharp/omnisharp-vim' },
 })
