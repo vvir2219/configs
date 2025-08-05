@@ -173,4 +173,6 @@ require('lazy').setup({
   },
 
   { 'OmniSharp/omnisharp-vim' },
+
+  { 'nanotee/sqls.nvim' },
 })

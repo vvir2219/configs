@@ -61,7 +61,7 @@ require 'lspconfig'.sqls.setup {
       connections = {
         {
           driver = 'postgresql',
-          dataSourceName = 'host=localhost port=5432 user=postgres password=password dbname=postgres sslmode=disable',
+          dataSourceName = os.getenv("DB_CONNECTION_STRING"), -- 'host=localhost port=5432 user=postgres password=password dbname=postgres sslmode=disable',
         },
       },
     },
