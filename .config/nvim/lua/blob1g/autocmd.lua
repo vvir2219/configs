@@ -45,3 +45,15 @@ create_autocmd("filetype", {
     -- :g/\s*if err /normal jva{zf
   end
 })
+
+-- sql
+create_autocmd("filetype", {
+  pattern = "sql",
+  callback = function()
+    local opts = { silent = true, buffer = true }
+    vim.keymap.set("n", "<leader>r", "<Plug>(sqls-execute-query)", opts)
+    vim.keymap.set("x", "<leader>r", "<Plug>(sqls-execute-query)", opts)
+    vim.keymap.set("n", "<leader>rv", "<Plug>(sqls-execute-query-vertical)", opts)
+    vim.keymap.set("x", "<leader>rv", "<Plug>(sqls-execute-query-vertical)", opts)
+  end
+})

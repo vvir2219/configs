@@ -91,3 +91,5 @@ export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 # export KITTY_LISTEN_ON=unix:/tmp/kitty
+#
+export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
