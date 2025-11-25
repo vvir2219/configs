@@ -10,6 +10,7 @@ vim.keymap.set('n', '<C-e>', vim.cmd.Oil)
 -- useful thingies
 
 vim.keymap.set('n', '<C-c>', '<C-^>')
+vim.keymap.set('n', '<leader>d', ':q<cr>')
 
 -- dvorak remappings
 
@@ -23,15 +24,17 @@ vim.keymap.set({ 'n', 'x', 'o' }, ':', ';')
 vim.keymap.set({ 'n', 'x', 'o' }, 'm', 'n')
 vim.keymap.set({ 'n', 'x', 'o' }, 'M', 'N')
 
-vim.keymap.set('n', '<leader>m', 'm')
+vim.keymap.set('n', '<leader>m', ':Man<CR>')
 vim.keymap.set('n', '\'\'', 'm')
 
 -- some benefits
 
 vim.keymap.set({ 'n', 'x', 'o' }, '-', '$')
 vim.keymap.set({ 'n', 'x', 'o' }, '_', '^')
-vim.keymap.set({ 'n', 'x', 'o' }, 'H', '8<Down>')
-vim.keymap.set({ 'n', 'x', 'o' }, 'T', '8<Up>')
+vim.keymap.set({ 'n', 'x', 'o' }, 'H', '12<Down>')
+vim.keymap.set({ 'n', 'x', 'o' }, 'T', '12<Up>')
+-- vim.keymap.set({ 'n', 'x', 'o' }, 'H', '<c-d>')
+-- vim.keymap.set({ 'n', 'x', 'o' }, 'T', '<c-u>')
 
 vim.keymap.set('n', 'N', '<C-w><C-w>')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
@@ -51,7 +54,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+-- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -83,11 +86,15 @@ end)
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
+vim.keymap.set("x", "<leader>s", [[:s//gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
+-- restore changes
+vim.keymap.set('n', '<leader>cr', ':e!<cr>')
+
 -- diff with unsaved version
-vim.keymap.set('n', '<leader>df', function()
+vim.keymap.set('n', '<leader>cv', function()
   local filetype = vim.bo.filetype
   local linenr = vim.fn.line(".")
 
@@ -106,3 +113,13 @@ vim.keymap.set('n', '<leader>df', function()
     buffer = vim.api.nvim_get_current_buf(),
   })
 end)
+
+-- set current directory to the open file directory
+
+vim.keymap.set('n', '<leader>cd', function()
+  local dir = vim.fn.expand('%:p:h')
+  vim.api.nvim_set_current_dir(dir)
+end)
+
+-- buffers
+vim.keymap.set('n', '<leader>bd', ':bufdo')

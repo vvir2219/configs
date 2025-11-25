@@ -65,3 +65,27 @@ create_autocmd("filetype", {
     vim.opt_local.commentstring = "/*%s*/"
   end
 })
+
+-- clean trailing whitespace
+--
+-- Source - https://stackoverflow.com/a
+-- Posted by lcheylus, modified by community. See post 'Timeline' for change history
+-- Retrieved 2025-11-25, License - CC BY-SA 4.0
+
+local trim_whitespace = create_augroup('trim_whitespaces', { clear = true })
+create_autocmd('FileType', {
+  group = trim_whitespace,
+  desc = 'Trim trailing white spaces',
+  pattern = 'bash,c,cpp,lua,java,go,php,javascript,make,python,rust,perl,sql,markdown',
+  callback = function ()
+    create_autocmd('BufWritePre', {
+      pattern = '<buffer>',
+      callback = function ()
+        local curpos = vim.api.nvim_win_get_cursor(0)
+        -- Search and replace trailing whitespaces
+        vim.cmd([[keeppatterns %s/\s\+$//e]])
+        vim.api.nvim_win_set_cursor(0, curpos)
+      end
+    })
+  end
+})

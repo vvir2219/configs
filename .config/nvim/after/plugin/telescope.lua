@@ -12,7 +12,7 @@ require("telescope").setup({
 
     pickers = {
         lsp_document_symbols = {
-            symbol_width = 60,
+            symbol_width = 50,
         },
     },
 })
