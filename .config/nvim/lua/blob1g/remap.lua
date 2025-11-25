@@ -24,6 +24,7 @@ vim.keymap.set({ 'n', 'x', 'o' }, 'm', 'n')
 vim.keymap.set({ 'n', 'x', 'o' }, 'M', 'N')
 
 vim.keymap.set('n', '<leader>m', 'm')
+vim.keymap.set('n', '\'\'', 'm')
 
 -- some benefits
 

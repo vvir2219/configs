@@ -57,3 +57,11 @@ create_autocmd("filetype", {
     vim.keymap.set("x", "<leader>rv", "<Plug>(sqls-execute-query-vertical)", opts)
   end
 })
+
+-- templ
+create_autocmd("filetype", {
+  pattern = "templ",
+  callback = function()
+    vim.opt_local.commentstring = "/*%s*/"
+  end
+})
