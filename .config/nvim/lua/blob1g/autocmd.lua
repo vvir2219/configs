@@ -89,3 +89,11 @@ autocmd('FileType', {
     })
   end
 })
+
+-- terminal
+autocmd('WinEnter', {
+  pattern = 'term://*',
+  callback = function ()
+    vim.cmd.startinsert()
+  end
+})
