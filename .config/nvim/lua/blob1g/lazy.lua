@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-local uv = vim.uv or vim.loop
+local uv       = vim.uv or vim.loop
 
 -- Auto-install lazy.nvim if not present
 if not uv.fs_stat(lazypath) then
@@ -261,6 +261,7 @@ require('lazy').setup({
   {
     'junegunn/vim-easy-align',
     init = function ()
+      vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)')
     end
   },
 

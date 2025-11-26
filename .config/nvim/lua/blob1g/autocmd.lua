@@ -1,7 +1,7 @@
-local create_augroup = vim.api.nvim_create_augroup
-local create_autocmd = vim.api.nvim_create_autocmd
+local autogroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
-local go_group = create_augroup("GoGroup", { clear = true })
+local go_group = autogroup("GoGroup", { clear = true })
 
 -- defining local go error snippet
 local ls = require('luasnip')
@@ -17,7 +17,7 @@ local errwr_snippet = s("error_handler", {
 })
 
 -- go
-create_autocmd("filetype", {
+autocmd("filetype", {
   group = go_group,
   pattern = "go",
   callback = function()
@@ -47,7 +47,7 @@ create_autocmd("filetype", {
 })
 
 -- sql
-create_autocmd("filetype", {
+autocmd("filetype", {
   pattern = "sql",
   callback = function()
     local opts = { silent = true, buffer = true }
@@ -59,7 +59,7 @@ create_autocmd("filetype", {
 })
 
 -- templ
-create_autocmd("filetype", {
+autocmd("filetype", {
   pattern = "templ",
   callback = function()
     vim.opt_local.commentstring = "/*%s*/"
@@ -72,13 +72,13 @@ create_autocmd("filetype", {
 -- Posted by lcheylus, modified by community. See post 'Timeline' for change history
 -- Retrieved 2025-11-25, License - CC BY-SA 4.0
 
-local trim_whitespace = create_augroup('trim_whitespaces', { clear = true })
-create_autocmd('FileType', {
+local trim_whitespace = autogroup('trim_whitespaces', { clear = true })
+autocmd('FileType', {
   group = trim_whitespace,
   desc = 'Trim trailing white spaces',
   pattern = 'bash,c,cpp,lua,java,go,php,javascript,make,python,rust,perl,sql,markdown',
   callback = function ()
-    create_autocmd('BufWritePre', {
+    autocmd('BufWritePre', {
       pattern = '<buffer>',
       callback = function ()
         local curpos = vim.api.nvim_win_get_cursor(0)
