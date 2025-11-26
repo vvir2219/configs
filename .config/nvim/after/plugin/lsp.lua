@@ -1,41 +1,10 @@
-local lsp_zero = require('lsp-zero')
-
-lsp_zero.on_attach(function(client, bufnr)
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps({ buffer = bufnr })
-
-  local opts = { buffer = bufnr, remap = false }
-  vim.keymap.set('i', "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-  vim.keymap.set('v', '<Leader>f', vim.lsp.buf.format, opts)
-end)
-
--- here you can setup the language servers
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  handlers = {
-    function(server_name)
-      require('lspconfig')[server_name].setup({})
-    end,
-  },
-})
-
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
+vim.keymap.set('v', '<Leader>f', vim.lsp.buf.format, opts)
+vim.keymap.set('i', "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
 require('luasnip.loaders.from_snipmate').lazy_load()
 
-cmp.setup({
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-  },
-  mapping = {
-    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-  }
-})
+-- ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+-- ['<C-b>'] = cmp_action.luasnip_jump_backward(),
 
 -- diagnostics
 
@@ -51,11 +20,7 @@ vim.keymap.set('n', '[e', function() vim.diagnostic.goto_prev({ severity = vim.d
 
 -- sql db connection
 
-require 'lspconfig'.sqls.setup {
-  on_attach = function(client, bufnr)
-    require('sqls').on_attach(client, bufnr) -- require sqls.nvim
-  end,
-
+vim.lsp.config('sqls', {
   settings = {
     sqls = {
       connections = {
@@ -66,30 +31,28 @@ require 'lspconfig'.sqls.setup {
       },
     },
   },
-}
+})
 
 -- harperls
 
-require('lspconfig').harper_ls.setup {
+vim.lsp.config('harper_ls', {
   settings = {
-    ["harper-ls"] = {
-      userDictPath = "",
-      fileDictPath = "",
-      linters = {
-        SentenceCapitalization = false,
-        LongSentences = false,
-        Spaces = false,
-      },
-      codeActions = {
-        ForceStable = false
-      },
-      markdown = {
-        IgnoreLinkTitle = false
-      },
-      diagnosticSeverity = "hint",
-      isolateEnglish = false,
-      dialect = "American",
-      maxFileLength = 120000
-    }
+    userDictPath = "",
+    fileDictPath = "",
+    linters = {
+      SentenceCapitalization = false,
+      LongSentences = false,
+      Spaces = false,
+    },
+    codeActions = {
+      ForceStable = false
+    },
+    markdown = {
+      IgnoreLinkTitle = false
+    },
+    diagnosticSeverity = "hint",
+    isolateEnglish = false,
+    dialect = "American",
+    maxFileLength = 120000
   }
-}
+})

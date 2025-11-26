@@ -63,28 +63,65 @@ require('lazy').setup({
   { "tpope/vim-sleuth" },
 
   { 'folke/tokyonight.nvim' },
-  { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
-  { 'williamboman/mason.nvim' },
-  { 'williamboman/mason-lspconfig.nvim' },
-  { 'neovim/nvim-lspconfig' },
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'hrsh7th/nvim-cmp' },
-  { 'hrsh7th/cmp-buffer' },
-  { 'L3MON4D3/LuaSnip' },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = { "lua_ls" },
+    },
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+  },
 
-  { "folke/neodev.nvim",                opts = {} },
+  {
+    'saghen/blink.cmp',
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      { 'L3MON4D3/LuaSnip', version = 'v2.*' },
+    },
+
+    version = '1.*',
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+      -- 'super-tab' for mappings similar to vscode (tab to accept)
+      -- 'enter' for enter to accept
+      -- 'none' for no mappings
+      --
+      -- All presets have the following mappings:
+      -- C-space: Open menu or open docs if already open
+      -- C-n/C-p or Up/Down: Select next/previous item
+      -- C-e: Hide menu
+      -- C-k: Toggle signature help (if signature.enabled = true)
+      --
+      -- See :h blink-cmp-config-keymap for defining your own keymap
+      keymap = { preset = 'default' },
+
+      appearance = {
+        nerd_font_variant = 'mono'
+      },
+
+      -- (Default) Only show the documentation popup when manually triggered
+      completion = { documentation = { auto_show = true } },
+
+      snippets = { preset = 'luasnip' },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+
+      fuzzy = { implementation = "prefer_rust_with_warning" }
+    },
+    opts_extend = { "sources.default" }
+  },
+
+  { "folke/neodev.nvim",     opts = {} },
 
   { "honza/vim-snippets" },
-  {
-    "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
-    build = "make install_jsregexp"
-  },
-  { 'saadparwaiz1/cmp_luasnip' },
 
-  { 'echasnovski/mini.nvim',   version = false },
+  { 'echasnovski/mini.nvim', version = false },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -103,9 +140,18 @@ require('lazy').setup({
   {
     'stevearc/oil.nvim',
     opts = {
+      watch_for_changes = true,
+
       view_options = {
         show_hidden = true
-      }
+      },
+
+      columns = {
+        "icon",
+        "permissions",
+        "size",
+        "mtime",
+      },
     }
   },
 
