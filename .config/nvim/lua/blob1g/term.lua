@@ -43,17 +43,19 @@ end)
 
 vim.keymap.set('t', '<c-esc>', '<c-\\>')
 vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
-vim.keymap.set('t', '<c-k>', '<c-\\><c-n><c-w>k')
-vim.keymap.set('t', '<c-j>', '<c-\\><c-n><c-w>j')
-vim.keymap.set('t', '<C-\'>', '<c-\\><c-n><c-w>h')
-vim.keymap.set('t', '<c-q>', '<c-\\><c-n><c-w>l')
+-- vim.keymap.set('t', '<c-k>', '<c-\\><c-n><c-w>k')
+-- vim.keymap.set('t', '<c-j>', '<c-\\><c-n><c-w>j')
+-- vim.keymap.set('t', '<C-\'>', '<c-\\><c-n><c-w>h')
+-- vim.keymap.set('t', '<c-q>', '<c-\\><c-n><c-w>l')
 vim.keymap.set('t', '<c-/>', '<c-\\><c-n>:q<cr>')
 
--- terminal
 vim.api.nvim_create_autocmd('WinEnter', {
   pattern = 'term://*',
-  callback = function ()
-    vim.cmd.startinsert()
+  callback = function()
+    local is_quickfix = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]['quickfix'] == 1
+    if not is_quickfix then
+      vim.cmd.startinsert()
+    end
 
     if not vim.g.terminal_buffer then
       vim.cmd('set nonumber')
