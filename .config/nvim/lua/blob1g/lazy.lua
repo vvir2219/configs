@@ -83,6 +83,10 @@ require('lazy').setup({
 
     version = '1.*',
 
+    appearance = {
+      nerd_font_variant = 'mono'
+    },
+
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -98,14 +102,30 @@ require('lazy').setup({
       -- C-k: Toggle signature help (if signature.enabled = true)
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
-      keymap = { preset = 'default' },
-
-      appearance = {
-        nerd_font_variant = 'mono'
+      keymap = {
+        preset = 'default',
+        ['<C-(>'] = { function(cmp) cmp.accept({ index = 1 }) end },
+        ['<C-)>'] = { function(cmp) cmp.accept({ index = 2 }) end },
+        ['<C-}>'] = { function(cmp) cmp.accept({ index = 3 }) end },
+        ['<C-+>'] = { function(cmp) cmp.accept({ index = 4 }) end },
+        ['<C-{>'] = { function(cmp) cmp.accept({ index = 5 }) end },
+        ['<C-]>'] = { function(cmp) cmp.accept({ index = 6 }) end },
       },
 
-      -- (Default) Only show the documentation popup when manually triggered
-      completion = { documentation = { auto_show = true } },
+      completion = {
+        documentation = { auto_show = true },
+        menu = {
+          draw = {
+            columns = { { 'item_idx' }, { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
+            components = {
+              item_idx = {
+                text = function(ctx) return ctx.idx > 6 and ' ' or tostring(ctx.idx) end,
+                highlight = 'BlinkCmpItemIdx' -- optional, only if you want to change its color
+              }
+            }
+          }
+        }
+      },
 
       snippets = { preset = 'luasnip' },
       sources = {
