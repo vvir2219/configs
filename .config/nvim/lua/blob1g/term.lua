@@ -1,5 +1,6 @@
 -- terminal
-vim.keymap.set('n', '<c-/>', function()
+
+function TerminalOpen()
   if vim.g.terminal_buffer and (not vim.api.nvim_buf_is_valid(vim.g.terminal_buffer)) then
     vim.g.terminal_buffer = nil
   end
@@ -34,7 +35,30 @@ vim.keymap.set('n', '<c-/>', function()
       end)
     end
   end
+end
+
+function TerminalClose()
+  if vim.fn.winnr('$') > 1 then
+    vim.api.nvim_win_close(0, false)
+  else
+    local jumplist = vim.fn.getjumplist()
+    local jumps, idx = unpack(jumplist)
+    if idx > 1 then
+      local jump = jumps[idx]
+      vim.api.nvim_set_current_buf(jump.bufnr)
+      vim.g.terminal_window = nil
+    end
+  end
+end
+
+vim.keymap.set('n', '<c-/>', TerminalOpen)
+vim.keymap.set('t', '<c-/>', TerminalClose)
+
+vim.keymap.set('n', 'zt', function()
+  TerminalOpen()
+  vim.cmd.only()
 end)
+
 
 vim.keymap.set('n', '<c-x>', function()
   vim.cmd('wa')
@@ -47,7 +71,6 @@ vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
 -- vim.keymap.set('t', '<c-j>', '<c-\\><c-n><c-w>j')
 -- vim.keymap.set('t', '<C-\'>', '<c-\\><c-n><c-w>h')
 -- vim.keymap.set('t', '<c-q>', '<c-\\><c-n><c-w>l')
-vim.keymap.set('t', '<c-/>', '<c-\\><c-n>:q<cr>')
 
 vim.api.nvim_create_autocmd('WinEnter', {
   pattern = 'term://*',
