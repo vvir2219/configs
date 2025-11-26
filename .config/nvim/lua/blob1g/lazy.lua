@@ -242,5 +242,17 @@ require('lazy').setup({
 
   { 'nanotee/sqls.nvim' },
 
-  -- { 'vim-scripts/OmniCppComplete' },
+  {
+    'chrisgrieser/nvim-various-textobjs',
+    event = "VeryLazy",
+    opts = {
+      keymaps = {
+        useDefaults = true
+      }
+    },
+  },
+
+  {
+    'junegunn/vim-easy-align',
+  }
 })
