@@ -26,6 +26,7 @@ vim.keymap.set({ 'n', 'x', 'o' }, '<d-f>', ';')
 vim.keymap.set({ 'n', 'x', 'o' }, '<d-b>', ',')
 
 vim.keymap.set({ 'n', 'x', 'o' }, 'j', 't')
+vim.keymap.set({ 'n', 'x', 'o' }, 'k', '10')
 
 vim.keymap.set('n', '<leader>m', ':Man<CR>')
 

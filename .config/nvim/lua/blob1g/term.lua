@@ -54,7 +54,7 @@ end
 vim.keymap.set('n', '<c-/>', TerminalOpen)
 vim.keymap.set('t', '<c-/>', TerminalClose)
 
-vim.keymap.set('n', 'zt', function()
+vim.keymap.set('n', '<D-/>', function()
   TerminalOpen()
   vim.cmd.only()
 end)
