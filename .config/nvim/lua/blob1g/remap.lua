@@ -26,10 +26,6 @@ vim.keymap.set('n', '<leader>m', ':Man<CR>')
 
 vim.keymap.set({ 'n', 'x', 'o' }, '-', '$')
 vim.keymap.set({ 'n', 'x', 'o' }, '_', '^')
--- vim.keymap.set({ 'n', 'x', 'o' }, 'H', '12<Down>')
--- vim.keymap.set({ 'n', 'x', 'o' }, 'T', '12<Up>')
--- vim.keymap.set({ 'n', 'x', 'o' }, 'H', '<c-d>')
--- vim.keymap.set({ 'n', 'x', 'o' }, 'T', '<c-u>')
 
 vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')
@@ -80,7 +76,6 @@ vim.keymap.set("n", "<leader>sr", [[:%s//gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>ss", [[:%s///gI<Left><Left><Left>]])
 vim.keymap.set("x", "<leader>s", [[:s/\%V/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- restore changes
 vim.keymap.set('n', '<leader>cr', ':e!<cr>')
