@@ -1,6 +1,7 @@
 alias config='/usr/bin/git --git-dir=/Users/vladilie/.cfg/ --work-tree=/Users/vladilie'
 # alias ls='[ $(pwd) = $HOME ] && gls -IDocuments -IPictures -IMovies -ILibrary -IApplications -ILibrary -IMusic -IPublic || \ls'
 alias vim=nvim
+alias e=nvim
 alias comp=docker-compose
 alias grep='grep --color'
 

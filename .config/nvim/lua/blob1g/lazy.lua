@@ -260,7 +260,7 @@ require('lazy').setup({
 
   {
     'junegunn/vim-easy-align',
-    init = function ()
+    init = function()
       vim.keymap.set({ 'n', 'x' }, 'ga', '<Plug>(EasyAlign)')
     end
   },

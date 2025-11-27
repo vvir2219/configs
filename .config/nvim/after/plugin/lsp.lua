@@ -1,4 +1,3 @@
-vim.keymap.set('v', '<Leader>f', vim.lsp.buf.format, opts)
 vim.keymap.set('i', "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
 require('luasnip.loaders.from_snipmate').lazy_load()
