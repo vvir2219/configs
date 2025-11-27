@@ -32,6 +32,12 @@ vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-\'>', '<C-w>h')
 
+vim.keymap.set('n', '<c-d>', '<c-d>zz')
+vim.keymap.set('n', '<c-u>', '<c-u>zz')
+
+vim.keymap.set('n', ']d', 'yyp')
+vim.keymap.set('n', '[d', 'yyP')
+
 -- from the primagen
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
