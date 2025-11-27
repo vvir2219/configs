@@ -16,27 +16,21 @@ vim.keymap.set('n', '<leader>d', ':q<cr>')
 
 vim.keymap.set({ 'n', 'x', 'o' }, 'h', 'j')
 vim.keymap.set({ 'n', 'x', 'o' }, 't', 'k')
-vim.keymap.set({ 'n', 'x', 'o' }, 'n', 'l')
 
 vim.keymap.set({ 'n', 'x', 'o' }, ';', ':')
 vim.keymap.set({ 'n', 'x', 'o' }, ':', ';')
 
-vim.keymap.set({ 'n', 'x', 'o' }, 'm', 'n')
-vim.keymap.set({ 'n', 'x', 'o' }, 'M', 'N')
-
 vim.keymap.set('n', '<leader>m', ':Man<CR>')
-vim.keymap.set('n', '\'\'', 'm')
 
 -- some benefits
 
 vim.keymap.set({ 'n', 'x', 'o' }, '-', '$')
 vim.keymap.set({ 'n', 'x', 'o' }, '_', '^')
-vim.keymap.set({ 'n', 'x', 'o' }, 'H', '12<Down>')
-vim.keymap.set({ 'n', 'x', 'o' }, 'T', '12<Up>')
+-- vim.keymap.set({ 'n', 'x', 'o' }, 'H', '12<Down>')
+-- vim.keymap.set({ 'n', 'x', 'o' }, 'T', '12<Up>')
 -- vim.keymap.set({ 'n', 'x', 'o' }, 'H', '<c-d>')
 -- vim.keymap.set({ 'n', 'x', 'o' }, 'T', '<c-u>')
 
-vim.keymap.set('n', 'N', '<C-w><C-w>')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
@@ -47,18 +41,14 @@ vim.keymap.set('n', '<C-\'>', '<C-w>h')
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- greatest remap ever
-vim.keymap.set("x", "<leader>p", [["_dP]])
-
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
-
 -- vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+-- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 vim.keymap.set("n", "]c", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "[c", "<cmd>cprev<CR>zz")

@@ -59,12 +59,6 @@ vim.keymap.set('n', 'zt', function()
   vim.cmd.only()
 end)
 
-
-vim.keymap.set('n', '<c-x>', function()
-  vim.cmd('wa')
-  vim.cmd("silent make | execute '!./' . expand('%<')")
-end)
-
 vim.keymap.set('t', '<c-esc>', '<c-\\>')
 vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
 -- vim.keymap.set('t', '<c-k>', '<c-\\><c-n><c-w>k')
