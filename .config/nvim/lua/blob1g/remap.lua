@@ -156,7 +156,7 @@ vim.keymap.set('i', '<c-y>', '<c-o>"0P')
 
 vim.keymap.set('i', '<d-b>', '<c-o>b')
 vim.keymap.set('i', '<d-f>', '<c-o>w')
-vim.keymap.set('i', '<d-a>', '<c-o>{')
-vim.keymap.set('i', '<d-e>', '<c-o>}')
+vim.keymap.set('i', '<d-a>', '<c-o>(')
+vim.keymap.set('i', '<d-e>', '<c-o>)')
 
 vim.keymap.set('i', '<d-d>', '<c-o>dw')

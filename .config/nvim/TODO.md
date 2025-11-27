@@ -1,0 +1,36 @@
+- !ULTIMATE SHIT: semantic selection and operations on those selections
+  - let's say it's operated by <leader>v and an optional semantic(treesitter) text object
+  - this will select the element, but also remember the node type (string, argument, variable, statement, function call,
+                                                                   block, function body, etc)
+  - will have to rember the rank of the selection, and the rank of what elements it operates on
+  - then we will have certain operations after the selection:
+    - go to the next element (of the same rank)
+    - go to previous element
+    - select / deselect from right
+    - select / deselect from left
+    - swap left / right (move with the selection, by elements of the same rank)
+    - slurp / barf left / right
+    - go to first in parent rank
+    - go to last in parent rank
+    - go to parent element
+    - go to child element
+    - move out of parent before / after (extract) (this will have to move the operated element rank to above)
+    - move into previous / next element of higher rank (also change the element rank it operates on)
+    - on certain element types, paredit capabilities (like encapsulate in a parent rank, split, etc)
+
+- git changed files telescope ( easypick? )
+- modified buffers telescope
+- fuzzy search?
+- leader w/b/e... (inside words)
+- BD
+- autosave? or or easier command for save
+- work on Oil for tree thingy (open in last buffer, toggle with ctr-e if opened)
+- oil from base directory?
+- search lua functions / builtins
+- replace
+- comment
+- fix expand region
+- lazy shit, like highlight on yank / delete
+- buffer and filesystem completion
+- endwise
+- [x] fix quicklist
