@@ -37,6 +37,3 @@ vim.opt.colorcolumn = "120"
 -- highlight extra space
 vim.api.nvim_set_hl(0, "ExtraWhitespace", {bg = "#FF0000"})
 vim.fn.matchadd("ExtraWhitespace", "\\s\\+$")
-
--- user commands
-
