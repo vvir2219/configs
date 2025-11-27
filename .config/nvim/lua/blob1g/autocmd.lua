@@ -51,10 +51,8 @@ autocmd("filetype", {
   pattern = "sql",
   callback = function()
     local opts = { silent = true, buffer = true }
-    vim.keymap.set("n", "<leader>r", "<Plug>(sqls-execute-query)", opts)
-    vim.keymap.set("x", "<leader>r", "<Plug>(sqls-execute-query)", opts)
-    vim.keymap.set("n", "<leader>rv", "<Plug>(sqls-execute-query-vertical)", opts)
-    vim.keymap.set("x", "<leader>rv", "<Plug>(sqls-execute-query-vertical)", opts)
+    vim.keymap.set({ "n", "x" }, "<leader>r", "<Plug>(sqls-execute-query)", opts)
+    vim.keymap.set({ "n", "x" }, "<leader>rv", "<Plug>(sqls-execute-query-vertical)", opts)
   end
 })
 
@@ -77,10 +75,10 @@ autocmd('FileType', {
   group = trim_whitespace,
   desc = 'Trim trailing white spaces',
   pattern = 'bash,c,cpp,lua,java,go,php,javascript,make,python,rust,perl,sql,markdown',
-  callback = function ()
+  callback = function()
     autocmd('BufWritePre', {
       pattern = '<buffer>',
-      callback = function ()
+      callback = function()
         local curpos = vim.api.nvim_win_get_cursor(0)
         -- Search and replace trailing whitespaces
         vim.cmd([[keeppatterns %s/\s\+$//e]])
@@ -92,8 +90,8 @@ autocmd('FileType', {
 
 -- fugitive
 autocmd('FileType', {
-  pattern="fugitive",
-  callback = function ()
+  pattern = "fugitive",
+  callback = function()
     vim.keymap.set('n', '<C-g>', ':q<cr>', { buffer = true })
   end
 })

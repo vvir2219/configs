@@ -11,6 +11,7 @@ vim.keymap.set('n', '<C-e>', vim.cmd.Oil)
 
 vim.keymap.set('n', '<C-c>', '<C-^>')
 vim.keymap.set('n', '<leader>d', ':q<cr>')
+vim.keymap.set('n', 'X', ':q!<cr>')
 
 -- dvorak remappings
 
@@ -19,6 +20,9 @@ vim.keymap.set({ 'n', 'x', 'o' }, 't', 'k')
 
 vim.keymap.set({ 'n', 'x', 'o' }, ';', ':')
 vim.keymap.set({ 'n', 'x', 'o' }, ':', ';')
+
+vim.keymap.set('n', '<d-f>', ';')
+vim.keymap.set('n', '<d-b>', ',')
 
 vim.keymap.set('n', '<leader>m', ':Man<CR>')
 
@@ -35,8 +39,13 @@ vim.keymap.set('n', '<C-\'>', '<C-w>h')
 vim.keymap.set('n', '<c-d>', '<c-d>zz')
 vim.keymap.set('n', '<c-u>', '<c-u>zz')
 
-vim.keymap.set('n', ']d', 'yyp')
-vim.keymap.set('n', '[d', 'yyP')
+-- duplicate lines above or below
+vim.keymap.set('n', '[y', 'yyp')
+vim.keymap.set('n', ']y', 'yyP')
+
+-- delete lines above or below
+vim.keymap.set('n', '[d', '<up>dd')
+vim.keymap.set('n', ']d', '<down>dd<up>')
 
 -- from the primagen
 
@@ -118,3 +127,26 @@ end)
 
 -- buffers
 vim.keymap.set('n', '<leader>bd', ':bufdo')
+
+-- insert mode commands, emacs like
+vim.keymap.set('i', '<c-p>', '<c-o><up>')
+vim.keymap.set('i', '<c-n>', '<c-o><down>')
+vim.keymap.set('i', '<c-b>', '<c-o><left>')
+vim.keymap.set('i', '<c-f>', '<c-o><right>')
+vim.keymap.set('i', '<c-s>', '<c-o>/')
+vim.keymap.set('i', '<d-s>', '<c-o>n')
+vim.keymap.set('i', '<d-S>', '<c-o>N')
+vim.keymap.set('i', '<c-&>', '<c-o>%')
+
+vim.keymap.set('i', '<c-a>', '<c-o>I')
+vim.keymap.set('i', '<c-e>', '<c-o>A')
+vim.keymap.set('i', '<c-k>', '<c-o>D')
+vim.keymap.set('i', '<c-d>', '<c-o>x')
+vim.keymap.set('i', '<c-/>', '<c-o>u')
+
+vim.keymap.set('i', '<d-b>', '<c-o>b')
+vim.keymap.set('i', '<d-f>', '<c-o>w')
+vim.keymap.set('i', '<d-a>', '<c-o>{')
+vim.keymap.set('i', '<d-e>', '<c-o>}')
+
+vim.keymap.set('i', '<d-d>', '<c-o>dw')
