@@ -12,7 +12,6 @@ vim.keymap.set('n', '<C-e>', vim.cmd.Oil)
 vim.keymap.set('n', '<C-c>', '<C-^>')
 vim.keymap.set('n', '<leader>d', ':q<cr>')
 vim.keymap.set('n', 'X', ':q!<cr>')
-vim.keymap.set('n', '<tab>', '==')
 
 -- dvorak remappings
 
@@ -93,10 +92,11 @@ end)
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
-vim.keymap.set("n", "<leader>sr", [[:%s//gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>sr", [[:%s/\v/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>ss", [[:%s///gI<Left><Left><Left>]])
-vim.keymap.set("x", "<leader>s", [[:s/\%V/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>sc", [[:%s/\v/gIc<Left><Left><Left><Left>]])
+vim.keymap.set("n", "<leader>sw", [[:%s/\v\<<C-r><C-w>\>//gI<Left><Left><Left>]])
+vim.keymap.set("x", "<leader>s", [[:s/\%V\v/gI<Left><Left><Left>]])
 
 -- restore changes
 vim.keymap.set('n', '<leader>cr', ':e!<cr>')
@@ -152,6 +152,7 @@ vim.keymap.set('i', '<c-e>', '<c-o>A')
 vim.keymap.set('i', '<c-k>', '<c-o>D')
 vim.keymap.set('i', '<c-d>', '<c-o>x')
 vim.keymap.set('i', '<c-/>', '<c-o>u')
+vim.keymap.set('i', '<c-y>', '<c-o>"0P')
 
 vim.keymap.set('i', '<d-b>', '<c-o>b')
 vim.keymap.set('i', '<d-f>', '<c-o>w')
