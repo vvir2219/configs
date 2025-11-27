@@ -12,6 +12,7 @@ vim.keymap.set('n', '<C-e>', vim.cmd.Oil)
 vim.keymap.set('n', '<C-c>', '<C-^>')
 vim.keymap.set('n', '<leader>d', ':q<cr>')
 vim.keymap.set('n', 'X', ':q!<cr>')
+vim.keymap.set('n', '<tab>', '==')
 
 -- dvorak remappings
 
