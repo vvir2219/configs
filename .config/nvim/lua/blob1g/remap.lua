@@ -21,8 +21,10 @@ vim.keymap.set({ 'n', 'x', 'o' }, 't', 'k')
 vim.keymap.set({ 'n', 'x', 'o' }, ';', ':')
 vim.keymap.set({ 'n', 'x', 'o' }, ':', ';')
 
-vim.keymap.set('n', '<d-f>', ';')
-vim.keymap.set('n', '<d-b>', ',')
+vim.keymap.set({ 'n', 'x', 'o' }, '<d-f>', ';')
+vim.keymap.set({ 'n', 'x', 'o' }, '<d-b>', ',')
+
+vim.keymap.set({ 'n', 'x', 'o' }, 'j', 't')
 
 vim.keymap.set('n', '<leader>m', ':Man<CR>')
 
@@ -40,12 +42,12 @@ vim.keymap.set('n', '<c-d>', '<c-d>zz')
 vim.keymap.set('n', '<c-u>', '<c-u>zz')
 
 -- duplicate lines above or below
-vim.keymap.set('n', '[y', 'yyp')
-vim.keymap.set('n', ']y', 'yyP')
+vim.keymap.set('n', '<leader>[y', 'yyp')
+vim.keymap.set('n', '<leader>]y', 'yyP')
 
 -- delete lines above or below
-vim.keymap.set('n', '[d', '<up>dd')
-vim.keymap.set('n', ']d', '<down>dd<up>')
+vim.keymap.set('n', '<leader>[d', '<up>dd')
+vim.keymap.set('n', '<leader>]d', '<down>dd<up>')
 
 -- from the primagen
 
