@@ -134,8 +134,8 @@ vim.keymap.set('n', '<leader>bd', ':bufdo')
 
 -- edit file in current directory
 vim.keymap.set('n', '<c-;>e', ':e %:p:h/')
-vim.keymap.set('n', '<c-;>vs', ':vs %:p:h/')
-vim.keymap.set('n', '<c-;>sp', ':sp %:p:h/')
+vim.keymap.set('n', '<c-;>v', ':vs %:p:h/')
+vim.keymap.set('n', '<c-;>s', ':sp %:p:h/')
 
 -- insert mode commands, emacs like
 vim.keymap.set('i', '<c-p>', '<c-o><up>')
