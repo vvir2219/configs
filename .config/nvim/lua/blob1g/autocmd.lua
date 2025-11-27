@@ -89,3 +89,11 @@ autocmd('FileType', {
     })
   end
 })
+
+-- fugitive
+autocmd('FileType', {
+  pattern="fugitive",
+  callback = function ()
+    vim.keymap.set('n', '<C-g>', ':q<cr>', { buffer = true })
+  end
+})
