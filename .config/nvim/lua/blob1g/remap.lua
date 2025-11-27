@@ -98,7 +98,6 @@ vim.keymap.set("n", "<leader>sc", [[:%s/\v/gIc<Left><Left><Left><Left>]])
 vim.keymap.set("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 vim.keymap.set("x", "<leader>s", [[:s/\%V\v/gI<Left><Left><Left>]])
 vim.keymap.set("x", "/", [[:s/\%V\v/&/gI<Left><Left><Left><Left><Left>]])
-vim.keymap.set("x", "<c-/>", [[:s///gI<Left><Left><Left>]])
 
 -- restore changes
 vim.keymap.set('n', '<leader>cr', ':e!<cr>')
