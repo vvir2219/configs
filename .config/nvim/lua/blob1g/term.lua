@@ -52,19 +52,17 @@ function TerminalClose()
 end
 
 vim.keymap.set('n', '<c-/>', TerminalOpen)
-vim.keymap.set('t', '<c-/>', TerminalClose)
+vim.keymap.set('t', '<c-/>', function ()
+  vim.cmd('wincmd p')
+end)
+vim.keymap.set('t', '<d-/>', TerminalClose)
 
-vim.keymap.set('n', '<D-/>', function()
+vim.keymap.set('n', '<d-/>', function()
   TerminalOpen()
   vim.cmd.only()
 end)
 
-vim.keymap.set('t', '<c-esc>', '<c-\\>')
-vim.keymap.set('t', '<esc>', '<c-\\><c-n>')
--- vim.keymap.set('t', '<c-k>', '<c-\\><c-n><c-w>k')
--- vim.keymap.set('t', '<c-j>', '<c-\\><c-n><c-w>j')
--- vim.keymap.set('t', '<C-\'>', '<c-\\><c-n><c-w>h')
--- vim.keymap.set('t', '<c-q>', '<c-\\><c-n><c-w>l')
+vim.keymap.set('t', '<c-esc>', '<c-\\><c-n>')
 
 vim.api.nvim_create_autocmd('WinEnter', {
   pattern = 'term://*',

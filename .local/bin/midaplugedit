@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+[ $# -ne 1 ] && {
+    >&2 echo "Usage: $(basename $0) <url>"
+    exit 1
+}
+
+nvim $(midaname "$1")

@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# compile command "./biblepassage"
+#
+# i need to make this faster, it's too slow.
+# maybe i'll implement it in C
+
+biblepath="$HOME/Bible.TXT"
+
+if [ ! -f $biblepath ]; then
+    wget https://www.gutenberg.org/cache/epub/10/pg10.txt -O $biblepath
+fi
+
+lines=$(wc -l $biblepath | awk '{ print $1 }')
+line=$(shuf -i 1-$lines -n 1)
+
+parstart=$(awk -v line="$line" '
+    NR < line && /^$/ { p = NR }
+    END { print p+1 }
+' $biblepath)
+
+parend=$(awk -v line="$line" '
+    NR > line && /^[\s]*$/ { print NR-1; exit }
+' $biblepath)
+
+awk -v s="$parstart" -v e="$parend" 'NR >= s && NR <= e' $biblepath

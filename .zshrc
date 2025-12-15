@@ -1,4 +1,4 @@
-alias config='/usr/bin/git --git-dir=/Users/vladilie/.cfg/ --work-tree=/Users/vladilie'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # alias ls='[ $(pwd) = $HOME ] && gls -IDocuments -IPictures -IMovies -ILibrary -IApplications -ILibrary -IMusic -IPublic || \ls'
 alias vim=nvim
 alias e=nvim
@@ -29,7 +29,7 @@ source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
 source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
 
 # go
-export PATH="/Users/vladilie/.goenv/shims:${PATH}"
+export PATH="$HOME/.goenv/shims:${PATH}"
 eval "$(goenv init -)"
 
 # nvm
@@ -68,10 +68,8 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # autocomplete
 export fpath=("$HOME/.config/completions/" $fpath)
-# autoload -U compinit; compinit # it's done automatically 
-
-# Created by `pipx` on 2024-12-17 09:11:02
-export PATH="$PATH:/Users/vladilie/.local/bin"
+autoload -U compinit; compinit
+# export fpath=($fpath ~/.zsh/completions) # alternative
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/vladilie/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/vladilie/google-cloud-sdk/path.zsh.inc'; fi
@@ -94,3 +92,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # export KITTY_LISTEN_ON=unix:/tmp/kitty
 #
 export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+
+# homage to terry
+biblepassage | cowsay -r

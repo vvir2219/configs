@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+[ $# -ne 1 ] && {
+    >&2 echo "Usage: $(basename "$0") filename"
+    exit 1
+}
+
+perl -e '
+  my $filename = shift @ARGV;  # get the first argument
+  open(my $fh, "<", $filename) or die "Cannot open file: $!";
+  my $size = -s $fh;
+  srand();
+  my $pos = int(rand($size));
+  # Seek to the random position
+  seek($fh, $pos, 0);
+  # If not at start, back up until we see a newline (or hit start)
+  if ($pos > 0) {
+      my $c;
+      # Step backwards one byte at a time
+      while (tell($fh) > 1) {
+          seek($fh, -2, 1);
+          $c = getc($fh);
+          last if defined($c) && $c eq "\n";
+      }
+      # Move forward one byte if we stopped at a newline
+      <$fh> if defined($c) && $c eq "\n";
+  }
+  # Now print the next full line
+  my $line = <$fh>;
+  print $line if defined $line;
+' "$1"
+

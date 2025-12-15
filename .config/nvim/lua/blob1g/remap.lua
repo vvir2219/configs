@@ -12,6 +12,7 @@ vim.keymap.set('n', '<C-e>', vim.cmd.Oil)
 vim.keymap.set('n', '<C-c>', '<C-^>')
 vim.keymap.set('n', '<leader>d', ':q<cr>')
 vim.keymap.set('n', 'X', ':q!<cr>')
+vim.keymap.set('n', 'zB', 'zfiB')
 
 -- dvorak remappings
 
@@ -20,6 +21,7 @@ vim.keymap.set({ 'n', 'x', 'o' }, 't', 'k')
 
 vim.keymap.set({ 'n', 'x', 'o' }, ';', ':')
 vim.keymap.set({ 'n', 'x', 'o' }, ':', ';')
+vim.keymap.set({ 'n', 'x', 'o' }, '&', '%')
 
 vim.keymap.set({ 'n', 'x', 'o' }, '<d-f>', ';')
 vim.keymap.set({ 'n', 'x', 'o' }, '<d-b>', ',')
@@ -39,8 +41,11 @@ vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-\'>', '<C-w>h')
 
-vim.keymap.set('n', '<c-d>', '<c-d>zz')
-vim.keymap.set('n', '<c-u>', '<c-u>zz')
+vim.keymap.set('n', '<d-e>', '<c-e>')
+vim.keymap.set('n', '<d-y>', '<c-y>')
+
+vim.keymap.set({ "o", "n" }, "'>", "`>")
+vim.keymap.set({ "o", "n" }, "'<", "`<")
 
 -- duplicate lines above or below
 vim.keymap.set('n', '<leader>[y', 'yyp')
@@ -65,6 +70,17 @@ vim.keymap.set("n", "<leader>P", [["+P]])
 -- vim.keymap.set("n", "Q", "<nop>")
 -- vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("x", "<leader>f", function()
+  local start_pos = vim.api.nvim_buf_get_mark(0, "<")
+  local end_pos   = vim.api.nvim_buf_get_mark(0, ">")
+
+  vim.lsp.buf.format({
+    range = {
+      start = { start_pos[1] - 1, start_pos[2] },
+      ["end"] = { end_pos[1] - 1, end_pos[2] },
+    },
+  })
+end, { desc = "Format selection" })
 
 vim.keymap.set("n", "]c", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "[c", "<cmd>cprev<CR>zz")
@@ -94,10 +110,14 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>sr", [[:%s/\v/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>ss", [[:%s///gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>sc", [[:%s/\v/gIc<Left><Left><Left><Left>]])
+vim.keymap.set("n", "<leader>sc", [[:%s///gIc<Left><Left><Left><Left>]])
 vim.keymap.set("n", "<leader>sw", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 vim.keymap.set("x", "<leader>s", [[:s/\%V\v/gI<Left><Left><Left>]])
 vim.keymap.set("x", "/", [[:s/\%V\v/&/gI<Left><Left><Left><Left><Left>]])
+
+vim.keymap.set("x", "<c-p>", "I<c-r>0<esc>")
+vim.keymap.set("x", "<d-p>", "A<c-r>0<esc>")
+-- vim.keymap.set("n", "<C-x>r", ":call setreg('a', '@q@a')<CR>@a")
 
 -- restore changes
 vim.keymap.set('n', '<leader>cr', ':e!<cr>')
@@ -127,7 +147,7 @@ end)
 
 vim.keymap.set('n', '<leader>cd', function()
   local dir = vim.fn.expand('%:p:h')
-  vim.api.nvim_set_current_dir(dir)
+  vim.cmd('lcd ' .. dir)
 end)
 
 -- buffers
@@ -153,11 +173,13 @@ vim.keymap.set('i', '<c-e>', '<c-o>A')
 vim.keymap.set('i', '<c-k>', '<c-o>D')
 vim.keymap.set('i', '<c-d>', '<c-o>x')
 vim.keymap.set('i', '<c-/>', '<c-o>u')
+vim.keymap.set('i', '<d-/>', '<c-o><c-r>')
 vim.keymap.set('i', '<c-y>', '<c-o>"0P')
 
 vim.keymap.set('i', '<d-b>', '<c-o>b')
 vim.keymap.set('i', '<d-f>', '<c-o>w')
 vim.keymap.set('i', '<d-a>', '<c-o>(')
 vim.keymap.set('i', '<d-e>', '<c-o>)')
-
+vim.keymap.set('i', '<d-o>', '<c-o>o')
+vim.keymap.set('i', '<d-O>', '<c-o>O')
 vim.keymap.set('i', '<d-d>', '<c-o>dw')

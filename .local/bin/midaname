@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+[ $# -ne 1 ] && {
+    >&2 echo "Usage: $(basename $0) <url>"
+    exit 1
+}
+
+echo "$(echo $1 | sed 's/\//\n/g' | tail -n 1 | sed 's/\.js//' | tr '?=' '__').js"

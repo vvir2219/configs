@@ -8,12 +8,18 @@ local ls = require('luasnip')
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
+--
+-- local errwr_snippet = s("error_handler", {
+--   -- t("if "), i(1, "err"), t({" != nil {", "\treturn fmt.Errorf(\""}), i(2, ""), t({" %w\", err)", "}"})
+--   t({ "if err != nil {", "\tlogger.Error.Println(err)", "\treturn " }),
+--   i(1, ""),
+--   t({ "", "}" })
+-- })
 
 local errwr_snippet = s("error_handler", {
   -- t("if "), i(1, "err"), t({" != nil {", "\treturn fmt.Errorf(\""}), i(2, ""), t({" %w\", err)", "}"})
-  t({ "if err != nil {", "\tlogger.Error.Println(err)", "\treturn " }),
+  t({ "if err != nil {", "\treturn err", "}" }),
   i(1, ""),
-  t({ "", "}" })
 })
 
 -- go
@@ -64,34 +70,19 @@ autocmd("filetype", {
   end
 })
 
--- clean trailing whitespace
---
--- Source - https://stackoverflow.com/a
--- Posted by lcheylus, modified by community. See post 'Timeline' for change history
--- Retrieved 2025-11-25, License - CC BY-SA 4.0
-
-local trim_whitespace = autogroup('trim_whitespaces', { clear = true })
-autocmd('FileType', {
-  group = trim_whitespace,
-  desc = 'Trim trailing white spaces',
-  pattern = 'bash,c,cpp,lua,java,go,php,javascript,make,python,rust,perl,sql,markdown',
-  callback = function()
-    autocmd('BufWritePre', {
-      pattern = '<buffer>',
-      callback = function()
-        local curpos = vim.api.nvim_win_get_cursor(0)
-        -- Search and replace trailing whitespaces
-        vim.cmd([[keeppatterns %s/\s\+$//e]])
-        vim.api.nvim_win_set_cursor(0, curpos)
-      end
-    })
-  end
-})
-
 -- fugitive
 autocmd('FileType', {
   pattern = "fugitive",
   callback = function()
     vim.keymap.set('n', '<C-g>', ':q<cr>', { buffer = true })
   end
+})
+
+-- vim help
+autocmd('FileType', {
+  pattern = "help",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, "n", "<Enter>", "<c-]>", { silent = true })
+    vim.api.nvim_buf_set_keymap(0, "n", "<Tab>", "/[|'].\\{-}[|']/<CR>", { silent = true })
+  end,
 })
