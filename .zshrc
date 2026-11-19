@@ -95,3 +95,10 @@ export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 
 # homage to terry
 biblepassage | cowsay -r
+
+# vim versions
+alias vim-old='NVIM_APPNAME=nvim-old nvim'
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

@@ -1,1 +1,0 @@
-require('blob1g')

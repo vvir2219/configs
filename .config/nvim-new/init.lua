@@ -1,0 +1,18 @@
+require("keymap")
+require("zoom")
+require("settings")
+require("whitespace").setup({})
+require("term")
+require("notes")
+require("theme")
+require("lspconfig")
+require("star")
+
+require("plugins.common")
+require("plugins.oil")
+require("plugins.telescope")
+require("plugins.mason")
+require("plugins.sqls")
+require("plugins.treesitter")
+
+-- print(vim.inspect(vim.pack.get()))
